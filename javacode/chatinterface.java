@@ -1,4 +1,4 @@
-package chatbot.java;
+package javacode;
 import java.io.IOException;
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class chatinterface {
     public static void main(String args[]) throws IOException {
+        boolean flag = true;
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to TranslateChat!");
         System.out.println("This application allows for you to practice speaking in any language.");
@@ -24,19 +25,21 @@ public class chatinterface {
         
         //translating user input and sending
         System.out.println("Starting chatbot...");
-        //String path = "F:/school/all programming files/translatechatbot/code\python/chatbot.exe"
-        //ProcessBuilder pb = new ProcessBuilder(path);
-        //Process p = pb.start();
-        InetAddress localhost = InetAddress.getByName("localhost"); 
-        Socket s = new Socket(localhost, 9000); 
+        InetAddress localhost = InetAddress.getByName("localhost");
+        Socket s = new Socket(localhost, 9000);  
         OutputStreamWriter out = new OutputStreamWriter(s.getOutputStream()); 
         BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream())); 
-        while (true) { 
+        do { 
             System.out.println("Enter: ");
             String phrase = input.nextLine();
+            //allows user to quit
+            if (phrase.equalsIgnoreCase("quit") || phrase.equalsIgnoreCase("bye")) {
+                s.close();
+                flag = false;
+            }
             
             //phrases
-            if (phrase.contains(" ")) {
+            else if (phrase.contains(" ")) {
                 String [] phrasearray = phrase.split(" ");
                 ArrayList <String> translatedphrase = new ArrayList <String> ();
                 for (String i : phrasearray) {
@@ -49,8 +52,8 @@ public class chatinterface {
                     out.write(j + " ");
                 }
                 out.flush();
+                //reading reponse
                 String response = in.readLine();
-                System.out.println(response);
                 chattranslate translate = new chattranslate(x, y, response);
                 response = translate.translate(x, y, response);
                 System.out.println("Computer response: " + response);
@@ -62,11 +65,15 @@ public class chatinterface {
                 String translatedtext = translate.translate(y, x, phrase);
                 out.write(translatedtext);
                 out.flush();
+                //reading response
                 String response = in.readLine();
-                System.out.println(response);
                 response = translate.translate(x, y, response);
                 System.out.println("Computer response: " + response);
             }
-        }
+        } while (flag);
+        //add later
+        //String path = "F:/school/all programming files/translatechatbot/code\python/chatbot.exe"
+        //ProcessBuilder pb = new ProcessBuilder(path);
+        //Process p = pb.start();
     }
 }

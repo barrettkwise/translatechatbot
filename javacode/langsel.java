@@ -1,4 +1,4 @@
-package chatbot.java;
+package javacode;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,10 +27,10 @@ public class langsel {
             Scanner in2 = new Scanner (System.in);
             //read file name from standard input
             //overwrite scanner to read file
-            File file = new File("F:/school/all programming files/translatechatbot/chatbot/text/lang.txt");
+            File file = new File("F:/school/all programming files/translatechatbot/text/lang.txt");
             in = new Scanner(file);
 
-            File file2 = new File("F:/school/all programming files/translatechatbot/chatbot/text/lang2.txt");
+            File file2 = new File("F:/school/all programming files/translatechatbot/text/lang2.txt");
             in2 = new Scanner(file2);
             while (in.hasNextLine() == true && in2.hasNextLine() == true) {
                 //putting lang codes and lang in array
