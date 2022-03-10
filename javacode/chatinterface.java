@@ -28,8 +28,12 @@ public class chatinterface {
         InetAddress localhost = InetAddress.getByName("localhost");
         Socket s = new Socket(localhost, 9000);  
         OutputStreamWriter out = new OutputStreamWriter(s.getOutputStream()); 
-        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream())); 
-        do { 
+        BufferedReader in = new BufferedReader(new 
+        InputStreamReader(s.getInputStream()));
+        String path = "E:/school/all programming files//translatechatbot/python/chatbot.exe";
+        ProcessBuilder pb = new ProcessBuilder(path);
+        do {
+            pb.start();  
             System.out.println("Enter: ");
             String phrase = input.nextLine();
             //allows user to quit
@@ -62,7 +66,7 @@ public class chatinterface {
             //words
             else {
                 chattranslate translate = new chattranslate(y, x, phrase);
-                String translatedtext = translate.translate(y, x, phrase);
+                String translatedtext = translate.translate (y, x, phrase);
                 out.write(translatedtext);
                 out.flush();
                 //reading response
@@ -71,9 +75,6 @@ public class chatinterface {
                 System.out.println("Computer response: " + response);
             }
         } while (flag);
-        //add later
-        //String path = "F:/school/all programming files/translatechatbot/code\python/chatbot.exe"
-        //ProcessBuilder pb = new ProcessBuilder(path);
-        //Process p = pb.start();
+        input.close();
     }
 }
