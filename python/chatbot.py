@@ -6,7 +6,7 @@ import urllib
 import openai as ai
 
 def airesponse(word):
-    ai.api_key ="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"
+    ai.api_key ="api-key"
 
     start_sequence = "\nAI:"
     restart_sequence = "\nHuman: "
