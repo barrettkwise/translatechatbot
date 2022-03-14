@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=sendword
+comment1.params=
+comment1.target=sendword()
+comment2.params=word
+comment2.target=sendword(java.lang.String)
+comment3.params=word
+comment3.target=void\ setWord(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ getResult()
+numComments=5

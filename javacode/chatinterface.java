@@ -1,20 +1,17 @@
 package javacode;
 import java.io.IOException;
 import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.util.ArrayList;
 
 public class chatinterface {
     public static void main(String args[]) throws IOException {
         boolean flag = true;
         Scanner input = new Scanner(System.in);
+        
         //intro and getting lang
         System.out.println("Welcome to TranslateChat!");
         System.out.println("This application allows for you to practice speaking in any language.");
+        
         //setting lang1 and lang2
         String x = "en";
         System.out.println("Choose the language you want to practice: ");
@@ -25,29 +22,26 @@ public class chatinterface {
         y = lang.getLang();
         
         //starting python script
-        System.out.println("Starting chatbot...");
-        String path = "E:/school/all programming files/translatechatbot/python/chatbot.exe";
-        ProcessBuilder pb = new ProcessBuilder(path);
-        //below statement starts script
-        Process p = pb.start();
-        
-        //starting java server
-        InetAddress localhost = InetAddress.getByName("localhost");
-        Socket s = new Socket(localhost, 9000); 
-        OutputStreamWriter out = new OutputStreamWriter(s.getOutputStream()); 
-        BufferedReader in = new BufferedReader(new 
-        InputStreamReader(s.getInputStream()));
-        
-        //translating user input and sending
+        System.out.println("Starting chatbot...\n");
+
+        //main loop 
         do {
-            //need to start new instance of script
-            //after first cycle of loop
-            System.out.println("Enter: ");
-            String phrase = input.nextLine();
+            //starts script
+            String path = "E:/school/all programming files/translatechatbot/python/chatbot.exe";
+            ProcessBuilder pb = new ProcessBuilder(path);
+            //below statement starts script
+            Process p = pb.start();
+            
+            System.out.println("Type 'quit' to exit.\nEnter: ");
+            String userString = input.nextLine();
+            
+            if (userString.contains("quit")) {
+                break;
+            }
             
             //phrases
-            if (phrase.contains(" ")) {
-                String [] phrasearray = phrase.split(" ");
+            else if (userString.contains(" ")) {
+                String [] phrasearray = userString.split(" ");
                 ArrayList <String> translatedphrase = new ArrayList <String> ();
                 
                 //translating phrase
@@ -56,15 +50,13 @@ public class chatinterface {
                     String temp = translate.translate(y, x, i);
                     translatedphrase.add(temp);
                 }
-                
+
                 //sending phrase
-                for (String j : translatedphrase) {
-                    out.write(j + " ");
-                }
-                out.flush();
+                sendphrase phrase = new sendphrase(translatedphrase);
+                phrase.setPhrase(translatedphrase);
                 
-                //reading reponse
-                String response = in.readLine();
+                //reading response
+                String response = phrase.getResult();
                 chattranslate translate = new chattranslate(x, y, response);
                 response = translate.translate(x, y, response);
                 System.out.println("Computer response: " + response);
@@ -73,23 +65,18 @@ public class chatinterface {
             //words
             else {
                 //translating and sending word
-                chattranslate translate = new chattranslate(y, x, phrase);
-                String translatedtext = translate.translate (y, x, phrase);
-                out.write(translatedtext);
-                out.flush();
+                chattranslate translate = new chattranslate(y, x, userString);
+                String translatedtext = translate.translate (y, x, userString);
+                sendword word = new sendword(translatedtext);
+                word.setWord(translatedtext);
                 
                 //reading response
-                String response = in.readLine();
+                String response = word.getResult();
                 response = translate.translate(x, y, response);
                 System.out.println("Computer response: " + response);
             }
+
         } while (flag);
         
-        //closing server
-        out.close();
-        s.close();
-        in.close();
-        input.close();
-        p.destroyForcibly();
     }
 }
