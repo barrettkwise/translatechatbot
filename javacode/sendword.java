@@ -1,4 +1,3 @@
-package javacode; 
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,6 +5,8 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
+//this program sends the word
+//to program script
 public class sendword {
     private String word;
     private String result;
@@ -14,7 +15,6 @@ public class sendword {
         this.word = "";
         this.result = "";
     }
-
 
     public sendword(String word) {
         try {

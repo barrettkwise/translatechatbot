@@ -5,9 +5,8 @@ import os
 import urllib
 import openai as ai
 
-def airesponse(word):
+def airesponse(word: str) -> str:
     ai.api_key ="api-key"
-
     start_sequence = "\nAI:"
     restart_sequence = "\nHuman: "
     exprompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: {} "

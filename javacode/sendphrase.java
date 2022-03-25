@@ -1,4 +1,3 @@
-package javacode; 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -6,6 +5,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 
+//this program sends the phrase
+//to program script
 public class sendphrase {
     private ArrayList <String> phrase = new ArrayList <String> ();
     private String result;
@@ -26,11 +27,11 @@ public class sendphrase {
                 out.write(word);
             }
             out.flush();
-            
+
             //getting result
             String result = in.readLine();
             this.result = result;
-        
+
         } catch (Exception e) { 
             System.err.println("Connection Error"); 
             e.printStackTrace(); 
@@ -40,7 +41,7 @@ public class sendphrase {
     public void setPhrase(ArrayList <String> phrase) {
         this.phrase = phrase;
     }
-    
+
     public String getResult() {
         return this.result;
     }
