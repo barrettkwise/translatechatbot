@@ -1,6 +1,6 @@
 <h2> Welcome to TranslateChatBot! </h2>
 
-In this application, users can use a chatbot to practrice speaking in different languages.
+In this application, users can use a chatbot to practice speaking in different languages.
 
 This project is mainly written in Java, but utilizes Python and the <a href = "https://beta.openai.com/examples/default-chat"> OpenAI </a> for hosting the chatbot service.
 
