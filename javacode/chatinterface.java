@@ -8,15 +8,15 @@ public class chatinterface {
     public static void main(String args[]) throws IOException {
         boolean flag = true;
         Scanner input = new Scanner(System.in);
-
         // intro and getting lang
         System.out.println("Welcome to TranslateChat!");
         System.out.println("This application allows for you to practice speaking in any language.");
-
+        
         // setting lang1 and lang2
         String x = "en";
         System.out.println("Choose the language you want to practice: ");
         String y = input.nextLine();
+        
         langsel lang = new langsel(y);
         lang.setLang(y);
         System.out.println("Chosen language: (" + lang.getLang2() + ", " + lang.getLang() + ")");
@@ -24,7 +24,7 @@ public class chatinterface {
 
         // starting python script
         System.out.println("Starting chatbot...\n");
-
+        
         // main loop
         do {
             // starts script
@@ -32,7 +32,6 @@ public class chatinterface {
             ProcessBuilder pb = new ProcessBuilder(path);
             // below statement starts script
             Process p = pb.start();
-
             System.out.println("Type 'quit' to exit.\nEnter: ");
             String userString = input.nextLine();
 
