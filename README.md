@@ -3,6 +3,7 @@
 In this application, users can use a chatbot to practice speaking in different languages.
 
 This project is mainly written in Java, but utilizes Python and the <a href = "https://beta.openai.com/examples/default-chat"> OpenAI </a> for hosting the chatbot service.
+(Also, there is a Anvil app version that runs in the browser. Linked <a href = "https://fznfm3jbu7lmk4dr.anvil.app/GEX2PDL57MMZXQGUGLWB3SFM" link> here. </a>)
 
 How to install:
 1. Download latest <a href = "https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz" download> Java </a> version (optional if already installed) 
