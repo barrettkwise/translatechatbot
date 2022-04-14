@@ -25,7 +25,7 @@ def outtranslate(text: str, lang: str) -> str:
 
 @anvil.server.callable
 def airesponse(word: str) -> str:
-    ai.api_key ="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"
+    ai.api_key ="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"
     start_sequence = "\nAI:"
     restart_sequence = "\nHuman: "
     exprompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: {} "
@@ -51,10 +51,3 @@ def airesponse(word: str) -> str:
     final = " ".join(result)
 
     return final
-
-@anvil.server.callable
-def getBrowser() -> str:
-    browser = webbbrowser.get()
-
-    return browser
-    
