@@ -27,11 +27,7 @@ def outtranslate(text: str, lang: str) -> str:
 @anvil.server.callable
 def airesponse(word: str) -> str:
     word = word.replace("\n", "")
-<<<<<<< HEAD
-    ai.api_key = "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"
-=======
     ai.api_key = "api-key"
->>>>>>> 6da7148d74fcde76b6c19c8bc7b94244ede8b2ae
     start_sequence = "\nAssistant:"
     restart_sequence = "\nHuman:"
     exprompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: {} "
