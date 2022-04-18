@@ -3,6 +3,7 @@ from pprint import pprint
 import anvil.server
 import openai as ai
 import webbrowser
+import json
 
 anvil.server.connect("EU6FPDGEFY4PYHMVHICGR5OU-FZNFM3JBU7LMK4DR")
 
@@ -25,9 +26,10 @@ def outtranslate(text: str, lang: str) -> str:
 
 @anvil.server.callable
 def airesponse(word: str) -> str:
-    ai.api_key ="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"
-    start_sequence = "\nAI:"
-    restart_sequence = "\nHuman: "
+    word = word.replace("\n", "")
+    ai.api_key = "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"
+    start_sequence = "\nAssistant:"
+    restart_sequence = "\nHuman:"
     exprompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: {} "
     exprompt = exprompt.format(word)
 
@@ -42,12 +44,14 @@ def airesponse(word: str) -> str:
     stop=[" Human:", " AI:"]
     )
     response = str(response)
+    response = json.loads(response)
+    response = response.get("choices")
+    response = get_value(response, "text")
+    response = response.replace("AI:", "")
+    response = response.replace("Assistant:", "")
+    return response
 
-    startresponse = response[111::]
-    endresponse = startresponse.find('"')
-    result = startresponse[0:endresponse]
-    result = result.split(" ")
-    del result[0]
-    final = " ".join(result)
-
-    return final
+def get_value(listOfDicts, key):
+    for subVal in listOfDicts:
+        if key in subVal:
+            return subVal[key]
