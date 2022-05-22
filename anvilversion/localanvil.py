@@ -2,7 +2,6 @@ from googletrans import Translator, constants
 from pprint import pprint
 import anvil.server
 import openai as ai
-import webbrowser
 import json
 
 anvil.server.connect("EU6FPDGEFY4PYHMVHICGR5OU-FZNFM3JBU7LMK4DR")
@@ -49,6 +48,7 @@ def airesponse(word: str) -> str:
     response = get_value(response, "text")
     response = response.replace("AI:", "")
     response = response.replace("Assistant:", "")
+    
     return response
 
 def get_value(listOfDicts, key):
