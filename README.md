@@ -1,6 +1,6 @@
 <h2> Welcome to TranslateChatBot! </h2>
 
-In this application, users can use a chatbot to practice speaking in different languages.
+In this application, users can use a chatbot (ChatGPT) to practice speaking in different languages.
 
 This project is mainly written in Java, but utilizes Python and the <a href = "https://beta.openai.com/examples/default-chat"> OpenAI </a> for hosting the chatbot service.
 (Also, there is a Anvil app version that runs in the browser, using a server running on a Raspberry Pi. Linked <a href = "https://fznfm3jbu7lmk4dr.anvil.app/GEX2PDL57MMZXQGUGLWB3SFM" link> here</a>. No longer up.)
